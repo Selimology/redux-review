@@ -1,19 +1,17 @@
-import Leftbar from './components/leftbar/Leftbar';
-import Navbar from './components/navbar/Navbar';
-import Rightbar from './components/rightbar/Rightbar';
-import Update from './components/update/Update';
+import { Provider } from 'react-redux';
+import store from './features/store';
+import Data from './Data';
 import './app.css';
+import { ApiProvider } from '@reduxjs/toolkit/query/react';
+import { productsApi } from './features/apiSlice';
 
 const App = () => {
   return (
-    <>
-      <Navbar />
-      <div className="container">
-        <Leftbar />
-        <Update />
-        <Rightbar />
-      </div>
-    </>
+    <Provider store={store}>
+      <ApiProvider api={productsApi}>
+        <Data />
+      </ApiProvider>
+    </Provider>
   );
 };
 
